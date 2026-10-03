@@ -87,6 +87,7 @@ const principles = [
     'DevOps and automation',
 ]
 
+
 const profileImage = 'https://media.licdn.com/dms/image/v2/C5103AQGhUFEVSFapbg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1583940133968?e=1792627200&v=beta&t=GvKb-G4iUbtwA3-bcEmSgKw_m88jOunMTQ6E8AGLau4'
 
 const tiltCard = (event) => {
