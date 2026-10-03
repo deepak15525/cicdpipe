@@ -111,7 +111,7 @@ const parallaxScene = (event) => {
     const x = (event.clientX - rect.left) / rect.width - 0.5
     const y = (event.clientY - rect.top) / rect.height - 0.5
 
-    scene.style.transform = `translate3d(${x * 18}px, ${y * 18}px, 0) rotateX(${(-y * 10).toFixed(2)}deg) rotateY(${(x * 12).toFixed(2)}deg)`
+    scene.style.transform = `translate3d(${(x * 10).toFixed(2)}px, ${(y * 10).toFixed(2)}px, 0) rotateX(${(-y * 6).toFixed(2)}deg) rotateY(${(x * 8).toFixed(2)}deg)`
 }
 
 const resetScene = (event) => {

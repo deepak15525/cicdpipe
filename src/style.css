@@ -174,9 +174,9 @@ select { font: inherit; }
 
 .hero {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
+  grid-template-columns: 1.12fr 0.88fr;
   align-items: center;
-  gap: 54px;
+  gap: 42px;
   padding: 66px 0 24px;
 }
 
@@ -314,6 +314,7 @@ select { font: inherit; }
   min-height: 480px;
   display: grid;
   place-items: center;
+  margin-left: 0;
   transition: transform 0.3s ease;
   will-change: transform;
 }
@@ -330,7 +331,7 @@ select { font: inherit; }
 
 .visual-card {
   position: relative;
-  width: min(400px, 92%);
+  width: min(380px, 92%);
   padding: 28px 24px 18px;
   border-radius: 32px;
   background: linear-gradient(180deg, rgba(17, 24, 36, 0.97), rgba(11, 18, 30, 0.82));
