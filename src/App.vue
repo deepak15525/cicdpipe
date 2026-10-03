@@ -104,6 +104,19 @@ const tiltCard = (event) => {
 const resetCard = (event) => {
     event.currentTarget.style.transform = 'perspective(1400px) rotateX(0deg) rotateY(0deg) translateY(0px)'
 }
+
+const parallaxScene = (event) => {
+    const scene = event.currentTarget
+    const rect = scene.getBoundingClientRect()
+    const x = (event.clientX - rect.left) / rect.width - 0.5
+    const y = (event.clientY - rect.top) / rect.height - 0.5
+
+    scene.style.transform = `translate3d(${x * 18}px, ${y * 18}px, 0) rotateX(${(-y * 10).toFixed(2)}deg) rotateY(${(x * 12).toFixed(2)}deg)`
+}
+
+const resetScene = (event) => {
+    event.currentTarget.style.transform = 'translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg)'
+}
 </script>
 
 <template>
@@ -136,10 +149,15 @@ const resetCard = (event) => {
         <main class="container">
             <section class="hero">
                 <div class="hero-copy">
-                    <div class="hero-badges">
-                        <span>Solution Design</span>
-                        <span>Cloud Delivery</span>
-                        <span>Product Engineering</span>
+                    <div class="marquee-shell" aria-label="Technology focus areas">
+                        <div class="marquee-track">
+                            <span>Solution Design</span>
+                            <span>Cloud Delivery</span>
+                            <span>Product Engineering</span>
+                            <span>Solution Design</span>
+                            <span>Cloud Delivery</span>
+                            <span>Product Engineering</span>
+                        </div>
                     </div>
                     <p class="eyebrow">Senior Software Analyst</p>
                     <h1 class="hero-title">Modern products. Faster execution. Better business outcomes.</h1>
@@ -170,7 +188,7 @@ const resetCard = (event) => {
                 </div>
 
                 <div class="hero-visual">
-                    <div class="visual-scene">
+                    <div class="visual-scene" @pointermove="parallaxScene" @pointerleave="resetScene">
                         <div class="floating-tag tag-1">UI Systems</div>
                         <div class="floating-tag tag-2">Cloud</div>
                         <div class="floating-tag tag-3">DevOps</div>

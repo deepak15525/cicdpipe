@@ -153,7 +153,10 @@ select { font: inherit; }
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.button:hover { transform: translateY(-2px); }
+.button:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 16px 28px rgba(122, 156, 255, 0.28);
+}
 
 .primary-button {
   background: linear-gradient(135deg, var(--primary), #8a74ff 45%, #67f0d2);
@@ -177,17 +180,50 @@ select { font: inherit; }
   padding: 66px 0 24px;
 }
 
-.hero-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+.marquee-shell {
+  position: relative;
+  overflow: hidden;
+  width: min(500px, 100%);
   margin-bottom: 18px;
+  border: 1px solid rgba(103, 240, 210, 0.18);
+  background: rgba(11, 18, 30, 0.45);
+  border-radius: 999px;
+  box-shadow: inset 0 0 20px rgba(122, 156, 255, 0.08);
 }
 
-.hero-badges span {
+.marquee-shell::before,
+.marquee-shell::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 42px;
+  z-index: 1;
+}
+
+.marquee-shell::before {
+  left: 0;
+  background: linear-gradient(90deg, rgba(5, 11, 22, 1), rgba(5, 11, 22, 0));
+}
+
+.marquee-shell::after {
+  right: 0;
+  background: linear-gradient(270deg, rgba(5, 11, 22, 1), rgba(5, 11, 22, 0));
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 14px;
+  padding: 10px 0;
+  white-space: nowrap;
+  animation: marquee 18s linear infinite;
+}
+
+.marquee-track span {
   display: inline-flex;
   align-items: center;
-  padding: 8px 12px;
+  padding: 8px 14px;
   border-radius: 999px;
   border: 1px solid rgba(103, 240, 210, 0.32);
   background: rgba(103, 240, 210, 0.08);
@@ -278,6 +314,18 @@ select { font: inherit; }
   min-height: 480px;
   display: grid;
   place-items: center;
+  transition: transform 0.3s ease;
+  will-change: transform;
+}
+
+.visual-scene::before {
+  content: '';
+  position: absolute;
+  inset: 14% 10% 18%;
+  border-radius: 32px;
+  background: radial-gradient(circle at center, rgba(122, 156, 255, 0.18), transparent 62%);
+  filter: blur(18px);
+  animation: pulseGlow 6s ease-in-out infinite;
 }
 
 .visual-card {
@@ -399,6 +447,7 @@ select { font: inherit; }
   text-transform: uppercase;
   box-shadow: var(--shadow);
   animation: float 6s ease-in-out infinite;
+  backdrop-filter: blur(12px);
 }
 
 .tag-1 { top: 6%; left: 10%; }
@@ -580,7 +629,13 @@ select { font: inherit; }
   color: var(--text);
   font-weight: 700;
   letter-spacing: 0.02em;
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.skill-pill:hover {
+  transform: translateY(-4px);
+  border-color: rgba(103, 240, 210, 0.38);
+  box-shadow: 0 18px 32px rgba(18, 28, 46, 0.32);
 }
 
 .project-grid {
@@ -598,7 +653,31 @@ select { font: inherit; }
   border-radius: 22px;
   background: linear-gradient(180deg, rgba(12, 18, 30, 0.96), rgba(15, 21, 35, 0.76));
   box-shadow: var(--shadow);
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  inset: -40% auto auto -10%;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(122, 156, 255, 0.18), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(122, 156, 255, 0.35);
+  box-shadow: 0 22px 42px rgba(4, 10, 18, 0.42);
+}
+
+.project-card:hover::before {
+  opacity: 1;
 }
 
 .project-tag {
@@ -710,6 +789,16 @@ select { font: inherit; }
 @keyframes headingGlow {
   0% { filter: drop-shadow(0 0 0 rgba(122,156,255,0)); }
   100% { filter: drop-shadow(0 0 12px rgba(122,156,255,0.28)); }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { transform: scale(0.96); opacity: 0.7; }
+  50% { transform: scale(1.06); opacity: 1; }
 }
 
 @media (max-width: 980px) {
